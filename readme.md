@@ -6,7 +6,9 @@ Inventaire 2017 des logiciels libres utilisés dans l'administration publique qu
 Disponible à l'interne: <https://di.collaboration.gouv.qc/bibliotheque/documents/2018/03/inventaire-des-logiciels-libres>
 
 ## Visualisation des données
-Quelques graphiques sont disponibles. Voir cette [démonstration préliminaire](https://src-yusucsprbo.now.sh/).
+Quelques graphiques sont disponibles. Voir cette [démonstration préliminaire](https://src-eyvrsjzerx.now.sh/).
+
+Partagez vos découvertes sur le [forum](https://forumsdulibre.quebec/t/inventaire-2017-des-logiciels-libres-utilises-dans-l-administration-publique-quebecoise/408?u=millette).
 
 ## Extraction des données
 Le [script d'extraction de données](https://github.com/millette/ll-gouv-qc) à partir du PDF génère la structure suivante:
