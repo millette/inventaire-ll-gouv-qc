@@ -20,15 +20,40 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <h1>Démo Vega</h1>
-<p>Site généré par generator-veeg.</p>
+<article>
+<h1>Inventaire des logiciels libres</h1>
+<h2>Gouvernement du Québec</h2>
+<p>Inventaire 2017 des logiciels libres utilisés dans l'administration publique québécoise</p>
+<p>Disponible à l'interne:
+<a href="https://di.collaboration.gouv.qc/bibliotheque/documents/2018/03/inventaire-des-logiciels-libres">https://di.collaboration.gouv.qc/bibliotheque/documents/2018/03/inventaire-des-logiciels-libres</a>
+</p>
+
+<h2>Visualisation des données</h2>
+<p>Quelques graphiques sont disponibles. Voir les
+<a href="https://github.com/millette/inventaire-ll-gouv-qc">sources sur github</a> et cette <a href="https://src-yusucsprbo.now.sh/">démonstration préliminaire</a>.
+</p>
+
+<p>Je vous encourage à explorer <a href="data/data.json">les données</a> avec l'interface
+<a href="http://vega.github.io/voyager/">Voyager pour Vega-lite</a>. On vous demandera d'abord:
+<blockquote>Please load a dataset</blockquote>
+puis
+<blockquote>From URL</blockquote>
+puis entrez ou glissez <a href="data/data.json">l'URL des données</a>.
+</p>
+
+<h2>Extraction des données</h2>
+<p>Un script a été écrit pour extraire les données du PDF. Voir les <a href="https://github.com/millette/ll-gouv-qc">sources sur github</a>.</p>
+</article>
+
 <div id="viz"></div>
+<footer>
+        <p>&copy; 2018 <a href="http://robin.millette.info/">Robin Millette</a></p>
+</footer>
         <script src="js/vendor/modernizr-3.5.0.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
-        
+
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Promise,Symbol"></script>
       <script crossorigin="anonymous" integrity="sha512-RhgZ2MzuuqeiZCsjO78rKwermqTCaWkDlMtOOT2VbosRUY40RX4xY+Im6k7CxgAIRz1IWua7E/hQw22VSmUNkQ==" src="https://cdn.jsdelivr.net/npm/vega@3.2.1/build/vega.min.js"></script>
 <script crossorigin="anonymous" integrity="sha512-5NXmrWV6Tb2WYEAevpTNduryHPLOoFeScop6mCioqOI65EC1o7RjW5tJ5QdL13PSwJ1VLT2k4nJgbdnCkQBMaw==" src="https://cdn.jsdelivr.net/npm/vega-lite@2.3.1/build/vega-lite.min.js"></script>
