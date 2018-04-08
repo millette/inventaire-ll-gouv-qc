@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": { "url": "data/data.json" },
+  "mark": "point",
+  "encoding": {
+    "size": {
+      "field": "low",
+      "type": "quantitative"
+    },
+    "x": {
+      "field": "type",
+      "type": "nominal",
+      "scale": {
+        "rangeStep": 12
+      },
+      "axis": {
+        "orient": "top"
+      }
+    },
+    "y": {
+      "field": "org",
+      "type": "nominal",
+      "scale": {
+        "rangeStep": 12
+      }
+    },
+    "color": {
+      "field": "nom",
+      "type": "nominal",
+      "scale": {
+        "scheme": "category20"
+      },
+      "legend": false
+    }
+  },
+  "config": {
+    "overlay": {
+      "line": true
+    },
+    "scale": {
+      "useUnaggregatedDomain": true
+    }
+  }
+
+
+
+
+
+}
