@@ -1,154 +1,110 @@
 {
-    "$schema": "https://vega.github.io/schema/vega/v3.0.json",
-    "autosize": "pad",
-    "padding": 5,
-    "width": 200,
-    "style": "cell",
-    "data": [
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "autosize": "pad",
+  "padding": 5,
+  "style": "cell",
+  "data": [
+    {
+      "name": "source_0",
+      "url": "data/data.json",
+      "format": {"type": "json"},
+      "transform": [
         {
-            "name": "source_0",
-            "url": "data/data.json",
-            "format": {
-                "type": "json",
-                "parse": {
-                    "b": "number"
-                }
-            },
-            "transform": [
-                {
-                    "type": "aggregate",
-                    "groupby": [
-                        "a"
-                    ],
-                    "ops": [
-                        "average"
-                    ],
-                    "fields": [
-                        "b"
-                    ],
-                    "as": [
-                        "average_b"
-                    ]
-                }
-            ]
+          "type": "filter",
+          "expr": "datum[\"low\"] !== null && !isNaN(datum[\"low\"])"
         }
-    ],
-    "signals": [
-        {
-            "name": "y_step",
-            "value": 21
-        },
-        {
-            "name": "height",
-            "update": "bandspace(domain('y').length, 0.1, 0.05) * y_step"
-        }
-    ],
-    "marks": [
-        {
-            "name": "marks",
-            "type": "rect",
-            "style": [
-                "bar"
-            ],
-            "from": {
-                "data": "source_0"
-            },
-            "encode": {
-                "update": {
-                    "fill": {
-                        "value": "#4c78a8"
-                    },
-                    "x": {
-                        "scale": "x",
-                        "field": "average_b"
-                    },
-                    "x2": {
-                        "scale": "x",
-                        "value": 0
-                    },
-                    "y": {
-                        "scale": "y",
-                        "field": "a"
-                    },
-                    "height": {
-                        "scale": "y",
-                        "band": true
-                    }
-                }
-            }
-        }
-    ],
-    "scales": [
-        {
-            "name": "x",
-            "type": "linear",
-            "domain": {
-                "data": "source_0",
-                "field": "average_b"
-            },
-            "range": [
-                0,
-                {
-                    "signal": "width"
-                }
-            ],
-            "nice": true,
-            "zero": true
-        },
-        {
-            "name": "y",
-            "type": "band",
-            "domain": {
-                "data": "source_0",
-                "field": "a",
-                "sort": true
-            },
-            "range": {
-                "step": {
-                    "signal": "y_step"
-                }
-            },
-            "paddingInner": 0.1,
-            "paddingOuter": 0.05
-        }
-    ],
-    "axes": [
-        {
-            "scale": "x",
-            "orient": "bottom",
-            "title": "Average of b",
-            "labelFlush": true,
-            "labelOverlap": true,
-            "tickCount": {
-                "signal": "ceil(width/40)"
-            },
-            "zindex": 1
-        },
-        {
-            "scale": "x",
-            "orient": "bottom",
-            "grid": true,
-            "tickCount": {
-                "signal": "ceil(width/40)"
-            },
-            "gridScale": "y",
-            "domain": false,
-            "labels": false,
-            "maxExtent": 0,
-            "minExtent": 0,
-            "ticks": false,
-            "zindex": 0
-        },
-        {
-            "scale": "y",
-            "orient": "left",
-            "title": "a",
-            "zindex": 1
-        }
-    ],
-    "config": {
-        "axisY": {
-            "minExtent": 30
-        }
+      ]
     }
+  ],
+  "signals": [
+    {"name": "x_step", "value": 12},
+    {
+      "name": "width",
+      "update": "bandspace(domain('x').length, 1, 0.5) * x_step"
+    },
+    {"name": "y_step", "value": 12},
+    {
+      "name": "height",
+      "update": "bandspace(domain('y').length, 1, 0.5) * y_step"
+    }
+  ],
+  "marks": [
+    {
+      "name": "marks",
+      "type": "symbol",
+      "style": ["point"],
+      "from": {"data": "source_0"},
+      "encode": {
+        "update": {
+          "opacity": {"value": 0.7},
+          "fill": {"value": "transparent"},
+          "stroke": {"scale": "color", "field": "nom"},
+          "tooltip": {
+            "signal": "{\"low\": format(datum[\"low\"], \"\"), \"type\": ''+datum[\"type\"], \"org\": ''+datum[\"org\"], \"nom\": ''+datum[\"nom\"]}"
+          },
+          "x": {"scale": "x", "field": "type"},
+          "y": {"scale": "y", "field": "org"},
+          "size": {"scale": "size", "field": "low"}
+        }
+      }
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "domain": {"data": "source_0", "field": "type", "sort": true},
+      "range": {"step": {"signal": "x_step"}},
+      "padding": 0.5
+    },
+    {
+      "name": "y",
+      "type": "point",
+      "domain": {"data": "source_0", "field": "org", "sort": true},
+      "range": {"step": {"signal": "y_step"}},
+      "padding": 0.5
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {"data": "source_0", "field": "nom", "sort": true},
+      "range": {"scheme": "category20"}
+    },
+    {
+      "name": "size",
+      "type": "linear",
+      "domain": {"data": "source_0", "field": "low"},
+      "range": [0, 129.95999999999998],
+      "zero": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "top",
+      "grid": false,
+      "title": "type",
+      "labelAlign": "left",
+      "labelAngle": 270,
+      "labelBaseline": "middle",
+      "zindex": 1
+    },
+    {"scale": "y", "orient": "left", "grid": false, "title": "org", "zindex": 1}
+  ],
+  "legends": [
+    {
+      "size": "size",
+      "gradientLength": {"signal": "clamp(height, 64, 200)"},
+      "symbolType": "circle",
+      "title": "low",
+      "encode": {
+        "symbols": {
+          "update": {
+            "fill": {"value": "transparent"},
+            "opacity": {"value": 0.7}
+          }
+        }
+      }
+    }
+  ]
 }
